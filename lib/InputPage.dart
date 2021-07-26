@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'IconContent.dart';
 import 'MyContainer.dart';
@@ -22,8 +21,17 @@ class _InputPageState extends State<InputPage> {
     if (gender == 1) {
       if (maleCardColor == cardNormalColor) {
         maleCardColor = cardPressedColor;
+        femaleCardColor = cardNormalColor;
       } else {
         maleCardColor = cardNormalColor;
+      }
+    }
+    if (gender == 2) {
+      if (femaleCardColor == cardNormalColor) {
+        femaleCardColor = cardPressedColor;
+        maleCardColor = cardNormalColor;
+      } else {
+        femaleCardColor = cardNormalColor;
       }
     }
   }
@@ -42,7 +50,7 @@ class _InputPageState extends State<InputPage> {
                 Expanded(
                   child: GestureDetector(
                     child: MyContainer(
-                      colorChoice: cardNormalColor,
+                      colorChoice: maleCardColor,
                       containerChild: IconContent(
                         icon: FontAwesomeIcons.mars,
                         text: "Male",
@@ -56,23 +64,29 @@ class _InputPageState extends State<InputPage> {
                   ),
                 ),
                 Expanded(
-                  child: MyContainer(
-                      colorChoice: cardNormalColor,
+                  child: GestureDetector(
+                    child: MyContainer(
+                      colorChoice: femaleCardColor,
                       containerChild: IconContent(
                         icon: FontAwesomeIcons.venus,
-                        text: "FEMALE",
-                      )),
+                        text: "Female",
+                      ),
+                    ),
+                    onTap: () {
+                      setState(() {
+                        updateColor(2);
+                      });
+                    },
+                  ),
                 ),
               ],
             ),
           ),
           Expanded(
-            child: Expanded(
-              child: MyContainer(
-                colorChoice: cardNormalColor,
-                containerChild: Column(
-                  children: [Icon(FontAwesomeIcons.mars)],
-                ),
+            child: MyContainer(
+              colorChoice: cardNormalColor,
+              containerChild: Column(
+                children: [Icon(FontAwesomeIcons.mars)],
               ),
             ),
           ),
@@ -106,15 +120,6 @@ class _InputPageState extends State<InputPage> {
           )
         ],
       ),
-      // floatingActionButton: Theme(
-      //   data: ThemeData(accentColor: Color(0xFF69EBFF)),
-      //   child: FloatingActionButton(
-      //     child: Icon(Icons.add),
-      //     onPressed: () {
-      //       print("yes");
-      //     },
-      //   ),
-      // ),
     );
   }
 }
