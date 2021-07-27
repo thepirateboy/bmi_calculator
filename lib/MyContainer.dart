@@ -6,13 +6,15 @@ class MyContainer extends StatelessWidget {
   MyContainer({required this.colorChoice, required this.containerChild});
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      child: containerChild,
-      margin: EdgeInsets.all(15),
-      decoration: BoxDecoration(
-        color: colorChoice,
-        borderRadius: BorderRadius.circular(10),
+    return GestureDetector(
+      child: Container(
+        width: double.infinity,
+        child: containerChild,
+        margin: EdgeInsets.all(15),
+        decoration: BoxDecoration(
+          color: colorChoice,
+          borderRadius: BorderRadius.circular(10),
+        ),
       ),
     );
   }
