@@ -2,11 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'IconContent.dart';
 import 'MyContainer.dart';
-
-const bottomHeight = 80.0;
-const cardNormalColor = Color(0xFF1C1D2F);
-const bottomColor = Color(0xFFEB1555);
-const cardPressedColor = Color(0xFF111328);
+import 'Constants.dart';
 
 enum Gender {
   male,
@@ -19,26 +15,26 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
-  Color maleCardColor = cardNormalColor;
-  Color femaleCardColor = cardNormalColor;
+  Color maleCardColor = c_CardNormalColor;
+  Color femaleCardColor = c_CardNormalColor;
 
   void updateColor() {
     //if selected gender is male
     if (selectedGender == Gender.male) {
-      if (maleCardColor == cardNormalColor) {
-        maleCardColor = cardPressedColor;
-        femaleCardColor = cardNormalColor;
+      if (maleCardColor == c_CardNormalColor) {
+        maleCardColor = c_CardPressedColor;
+        femaleCardColor = c_CardNormalColor;
       } else {
-        maleCardColor = cardNormalColor;
+        maleCardColor = c_CardNormalColor;
       }
     }
     //if selected gender is female
     if (selectedGender == Gender.female) {
-      if (femaleCardColor == cardNormalColor) {
-        femaleCardColor = cardPressedColor;
-        maleCardColor = cardNormalColor;
+      if (femaleCardColor == c_CardNormalColor) {
+        femaleCardColor = c_CardPressedColor;
+        maleCardColor = c_CardNormalColor;
       } else {
-        femaleCardColor = cardNormalColor;
+        femaleCardColor = c_CardNormalColor;
       }
     }
   }
@@ -52,11 +48,13 @@ class _InputPageState extends State<InputPage> {
         title: Text("BMI CALCULATOR"),
       ),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Expanded(
             child: Row(
               children: [
                 Expanded(
+                  // MALE CARD
                   child: GestureDetector(
                     onTap: () {
                       setState(() {
@@ -74,6 +72,7 @@ class _InputPageState extends State<InputPage> {
                   ),
                 ),
                 Expanded(
+                  // FEMALE CARD
                   child: GestureDetector(
                     onTap: () {
                       setState(() {
@@ -95,9 +94,30 @@ class _InputPageState extends State<InputPage> {
           ),
           Expanded(
             child: MyContainer(
-              colorChoice: cardNormalColor,
+              colorChoice: c_CardNormalColor,
               containerChild: Column(
-                children: [Icon(FontAwesomeIcons.mars)],
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Height",
+                    style: c_LabelStyle,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.baseline,
+                    textBaseline: TextBaseline.alphabetic,
+                    children: [
+                      Text(
+                        "180",
+                        style: c_BigNumber,
+                      ),
+                      Text(
+                        "cm",
+                        style: c_LabelStyle,
+                      )
+                    ],
+                  )
+                ],
               ),
             ),
           ),
@@ -106,7 +126,7 @@ class _InputPageState extends State<InputPage> {
               children: [
                 Expanded(
                   child: MyContainer(
-                    colorChoice: cardNormalColor,
+                    colorChoice: c_CardNormalColor,
                     containerChild: Column(
                       children: [Icon(FontAwesomeIcons.mars)],
                     ),
@@ -114,7 +134,7 @@ class _InputPageState extends State<InputPage> {
                 ),
                 Expanded(
                   child: MyContainer(
-                    colorChoice: cardNormalColor,
+                    colorChoice: c_CardNormalColor,
                     containerChild: Column(
                       children: [Icon(FontAwesomeIcons.mars)],
                     ),
@@ -124,10 +144,10 @@ class _InputPageState extends State<InputPage> {
             ),
           ),
           Container(
-            color: bottomColor,
+            color: c_BottomColor,
             margin: EdgeInsets.only(top: 10),
             width: double.infinity,
-            height: bottomHeight,
+            height: c_BottomHeight,
           )
         ],
       ),

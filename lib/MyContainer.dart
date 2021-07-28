@@ -8,7 +8,7 @@ class MyContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       child: Container(
-        width: double.infinity,
+        //width: double.infinity,
         child: containerChild,
         margin: EdgeInsets.all(15),
         decoration: BoxDecoration(
