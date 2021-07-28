@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'IconContent.dart';
 import 'MyContainer.dart';
 import 'Constants.dart';
+import 'RoundButton.dart';
 
 enum Gender {
   male,
@@ -15,6 +16,12 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
+  int height = 180;
+  int weight = 60;
+  int age = 20;
+
+  late Gender selectedGender;
+
   Color maleCardColor = c_CardNormalColor;
   Color femaleCardColor = c_CardNormalColor;
 
@@ -39,8 +46,6 @@ class _InputPageState extends State<InputPage> {
     }
   }
 
-  late Gender selectedGender;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,8 +58,8 @@ class _InputPageState extends State<InputPage> {
           Expanded(
             child: Row(
               children: [
+                // ------- MALE CARD -------
                 Expanded(
-                  // MALE CARD
                   child: GestureDetector(
                     onTap: () {
                       setState(() {
@@ -71,8 +76,8 @@ class _InputPageState extends State<InputPage> {
                     ),
                   ),
                 ),
+                // ------- FEMALE CARD -------
                 Expanded(
-                  // FEMALE CARD
                   child: GestureDetector(
                     onTap: () {
                       setState(() {
@@ -92,6 +97,7 @@ class _InputPageState extends State<InputPage> {
               ],
             ),
           ),
+          // ------- HEIGHT CARD -------
           Expanded(
             child: MyContainer(
               colorChoice: c_CardNormalColor,
@@ -99,7 +105,7 @@ class _InputPageState extends State<InputPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "Height",
+                    "HEIGHT",
                     style: c_LabelStyle,
                   ),
                   Row(
@@ -108,46 +114,156 @@ class _InputPageState extends State<InputPage> {
                     textBaseline: TextBaseline.alphabetic,
                     children: [
                       Text(
-                        "180",
-                        style: c_BigNumber,
+                        height.toString(),
+                        style: c_BigNumberStyle,
                       ),
                       Text(
                         "cm",
                         style: c_LabelStyle,
                       )
                     ],
-                  )
+                  ),
+                  SliderTheme(
+                    data: SliderTheme.of(context).copyWith(
+                        activeTrackColor: Colors.white,
+                        inactiveTrackColor: Colors.grey,
+                        thumbColor: c_BottomColor,
+                        overlayColor: c_BottomColor.withOpacity(0.16),
+                        thumbShape:
+                            RoundSliderThumbShape(enabledThumbRadius: 15),
+                        overlayShape:
+                            RoundSliderOverlayShape(overlayRadius: 27)),
+                    child: Slider(
+                      value: height.toDouble(),
+                      min: 120,
+                      max: 220,
+                      //activeColor: c_BottomColor,
+                      //inactiveColor: Colors.grey,
+                      onChanged: (double newValue) {
+                        setState(() {
+                          height = newValue.toInt();
+                        });
+                      },
+                    ),
+                  ),
                 ],
               ),
             ),
           ),
+          // ------- 3rd Line of Column -------
           Expanded(
             child: Row(
               children: [
+                // ------- WEIGHT CARD -------
                 Expanded(
                   child: MyContainer(
                     colorChoice: c_CardNormalColor,
                     containerChild: Column(
-                      children: [Icon(FontAwesomeIcons.mars)],
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Weight",
+                          style: c_LabelStyle,
+                        ),
+                        Text(
+                          weight.toString(),
+                          style: c_BigNumberStyle,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            //---- Minus button ----
+                            RoundButton(
+                              myIcon: FontAwesomeIcons.minus,
+                              onPressed: () {
+                                setState(() {
+                                  weight--;
+                                });
+                              },
+                            ),
+                            SizedBox(
+                              width: 10.0,
+                            ),
+                            //---- Plus button ----
+                            RoundButton(
+                              myIcon: FontAwesomeIcons.plus,
+                              onPressed: () {
+                                setState(() {
+                                  weight++;
+                                });
+                              },
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
                   ),
                 ),
+                // ------- AGE CARD -------
                 Expanded(
                   child: MyContainer(
                     colorChoice: c_CardNormalColor,
                     containerChild: Column(
-                      children: [Icon(FontAwesomeIcons.mars)],
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Age",
+                          style: c_LabelStyle,
+                        ),
+                        Text(
+                          age.toString(),
+                          style: c_BigNumberStyle,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            RoundButton(
+                              myIcon: FontAwesomeIcons.backward,
+                              onPressed: () {
+                                setState(() {
+                                  age--;
+                                });
+                              },
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            RoundButton(
+                              myIcon: FontAwesomeIcons.forward,
+                              onPressed: () {
+                                setState(() {
+                                  age++;
+                                });
+                              },
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
                   ),
                 ),
               ],
             ),
           ),
-          Container(
-            color: c_BottomColor,
-            margin: EdgeInsets.only(top: 10),
-            width: double.infinity,
-            height: c_BottomHeight,
+          GestureDetector(
+            child: Container(
+              alignment: Alignment.center,
+              color: c_BottomColor,
+              margin: EdgeInsets.only(top: 10),
+              width: double.infinity,
+              height: c_BottomHeight,
+              child: Text(
+                "CALCULATE",
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              // padding: EdgeInsets.all(double.infinity),
+            ),
+            onTap: () {
+              Navigator.pushNamed(context, '/result');
+            },
           )
         ],
       ),

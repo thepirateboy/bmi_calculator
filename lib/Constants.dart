@@ -10,7 +10,7 @@ const c_LabelStyle = TextStyle(
   color: Color(0xFF8D8E98),
 );
 
-const c_BigNumber = TextStyle(
+const c_BigNumberStyle = TextStyle(
   fontSize: 50,
   fontWeight: FontWeight.w900,
 );
