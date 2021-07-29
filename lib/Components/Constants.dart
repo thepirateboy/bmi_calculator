@@ -14,3 +14,23 @@ const c_BigNumberStyle = TextStyle(
   fontSize: 50,
   fontWeight: FontWeight.w900,
 );
+
+const c_TitleStyle = TextStyle(
+  fontSize: 50,
+  fontWeight: FontWeight.bold,
+);
+
+const c_ResultConclusionStyle = TextStyle(
+  color: Color(0xFF24D876),
+  fontWeight: FontWeight.bold,
+  fontSize: 20,
+);
+
+const c_BmiStyle = TextStyle(
+  fontWeight: FontWeight.bold,
+  fontSize: 100,
+);
+
+const c_DiagnoseStyle = TextStyle(
+  fontSize: 22,
+);
