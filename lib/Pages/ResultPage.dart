@@ -4,8 +4,18 @@ import 'package:bmi_calculator/Components/IconContent.dart';
 import 'package:bmi_calculator/Components/MyContainer.dart';
 import 'package:bmi_calculator/Components/Constants.dart';
 import 'package:bmi_calculator/Components/BottomBar.dart';
+import 'package:bmi_calculator/TheCalculator.dart';
 
 class ResultPage extends StatelessWidget {
+  final String bmiResultNumber;
+  final String bmiResultText;
+  final String bmiResultDiagnose;
+
+  ResultPage(
+      {required this.bmiResultNumber,
+      required this.bmiResultText,
+      required this.bmiResultDiagnose});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,15 +43,15 @@ class ResultPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Text(
-                    "ttt",
+                    bmiResultText,
                     style: c_ResultConclusionStyle,
                   ),
                   Text(
-                    "20.5",
+                    bmiResultNumber,
                     style: c_BmiStyle,
                   ),
                   Text(
-                    "your ijfhwginow  nq wfbyagfiuydsg gdd wfewewqre feeww",
+                    bmiResultDiagnose,
                     textAlign: TextAlign.center,
                     style: c_DiagnoseStyle,
                   )
