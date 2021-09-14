@@ -256,9 +256,10 @@ class _InputPageState extends State<InputPage> {
                 context,
                 MaterialPageRoute(
                   builder: (context) => ResultPage(
-                      bmiResultNumber: cal.calculateBMI(),
-                      bmiResultText: cal.getResult(),
-                      bmiResultDiagnose: cal.getDiagnose()),
+                    bmiResultNumber: cal.calculateBMI(),
+                    bmiResultText: cal.getResult(),
+                    bmiResultDiagnose: cal.getDiagnose(),
+                  ),
                 ),
               );
             },
